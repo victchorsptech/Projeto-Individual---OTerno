@@ -1,0 +1,16 @@
+CREATE DATABASE O_Terno;
+USE O_Terno;
+
+CREATE TABLE users (
+id_user INT PRIMARY KEY auto_increment,
+Nome varchar(45),
+email varchar(45),
+senha varchar(45)
+);
+
+CREATE TABLE Question (
+fk_user int, foreign key (fk_user) references users(id_user),
+idade int,
+qtd_amigos int,
+album varchar(40), check (album = "66" or album = "Melhor do que parece" or album = "O terno" or album = "atras/alem")
+);

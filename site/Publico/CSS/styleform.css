@@ -1,0 +1,148 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+::-webkit-scrollbar-track {
+    background-color: #24252A;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #24252A;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e5a400;
+    border-radius: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #24252A;
+}
+
+/* Header */
+.backgroundHeader {
+    width: 100%;
+    height: 100px;
+    background-color: #24252A;
+}
+
+li, a, button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0px -5px 40px;
+    box-sizing: border-box;
+    background-color: #24252A;
+    box-shadow: 0px 5px 40px;
+    z-index: 1000;
+    
+   
+}
+
+.titulo {
+    color:#e5a400
+}
+
+.navbar_links {
+    list-style: none;
+}
+
+.navbar_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.navbar_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.navbar_links li a:hover {
+    color: #e5a400;
+    cursor: pointer;
+
+}
+
+.BntSair {
+    padding: 9px 25px;
+    background-color: rgb(0,136,169,1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.BntSair:hover {
+    background-color: #e5a400;
+}
+
+/* formulario */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+.formulario h1{
+    color: #e5a400;
+}
+
+.questoes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: #edf0f1;
+    align-items: center;
+}
+
+#input_idade {
+    width: 20%;
+    margin-top: 20px;
+    margin-bottom: 50px
+}
+
+#input_amigos {
+    width: 20%;
+    margin-top: 20px;
+    margin-bottom: 50px
+}
+
+#select{
+    width: 20%;
+    background-color: #e5a400;
+    margin-top: 20px;
+    margin-bottom: 50px
+}
+
+.btnenviar {
+    background-color: rgb(0,136,169,1);
+    width: 200px;
+    height: 40px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.btnenviar:hover {
+    background-color: #e5a400;
+    width: 210px;
+    height: 45px;
+    border-radius: 30px;
+    transition: 1s;
+    
+}
