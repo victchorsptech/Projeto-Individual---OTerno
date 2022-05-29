@@ -177,7 +177,7 @@ li, a, button {
     margin-bottom: 5px;
 }
 
-#senha{
+#senha_input{
     background-color: #24252A;
     border: 1px solid #e5a400 ;
     border-radius: 5px;
@@ -188,7 +188,7 @@ li, a, button {
 
 }
 
-#confirmar_senha {
+#confirmacao_senha_input {
     background-color: #24252A;
     border: 1px solid #e5a400 ;
     border-radius: 5px;
@@ -198,7 +198,7 @@ li, a, button {
     font-size: 15px;
 }
 
-#nome{
+#nome_input{
     background-color: #24252A;
     border: 1px solid #e5a400 ;
     border-radius: 5px;
@@ -208,7 +208,7 @@ li, a, button {
     font-size: 15px;
 }
 
-#email{
+#email_input{
     background-color: #24252A;
     border: 1px solid #e5a400 ;
     border-radius: 5px;
@@ -219,23 +219,23 @@ li, a, button {
 
     
 }
-#nome::-webkit-input-placeholder{
+#nome_input::-webkit-input-placeholder{
     font-style: bold;
     padding-left: 150px;
     
 }
 
-#email::-webkit-input-placeholder{
+#email_input::-webkit-input-placeholder{
     font-style: bold;
     padding-left: 130px;
 }
 
-#senha::-webkit-input-placeholder{
+#senha_input::-webkit-input-placeholder{
     font-style: bold;
     padding-left: 150px;
 }
 
-#confirmar_senha::-webkit-input-placeholder{
+#confirmacao_senha_input::-webkit-input-placeholder{
     font-style: bold;
     padding-left: 150px;
 }

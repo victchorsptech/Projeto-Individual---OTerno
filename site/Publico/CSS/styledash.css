@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+::-webkit-scrollbar-track {
+    background-color: #24252A;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #24252A;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e5a400;
+    border-radius: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #24252A;
+}
+
+/* Header */
+.backgroundHeader {
+    width: 100%;
+    height: 100px;
+    background-color: #24252A;
+}
+
+li, a, button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0px -5px 40px;
+    box-sizing: border-box;
+    background-color: #24252A;
+    box-shadow: 0px 5px 40px;
+    z-index: 1000;
+    
+   
+}
+
+.titulo {
+    color:#e5a400
+}
+
+.navbar_links {
+    list-style: none;
+}
+
+.navbar_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.navbar_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.navbar_links li a:hover {
+    color: #e5a400;
+    cursor: pointer;
+
+}
+
+.BntEntrar {
+    padding: 9px 25px;
+    background-color: rgb(0,136,169,1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.BntEntrar:hover {
+    background-color: #e5a400;
+}
+
+/* Fim header */
+
+.titulo_dash {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    
+}
+
+.h1_text_dash {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #e5a400;
+    position: center;
+}
+
+.graficos {
+
+    display: flex;
+    flex-direction: row;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    
+}
+
+.dashboard1 {
+    background-color: #edf0f1;
+    display: flex;
+    flex-direction: column;
+
+    width: 40%;
+    padding: 10px;
+    box-shadow: 10px 20px black;
+}
+
+.dashboard1 h1 {
+    align-self: center;
+}
+
+
+
+.dashboard2 {
+    background-color: #edf0f1;
+    display: flex;
+    flex-direction: column;
+    
+    width: 40%;
+    padding: 10px;
+    box-shadow: 10px 20px black;
+}
+
+.dashboard2 h1 {
+    align-self: center;
+}
+

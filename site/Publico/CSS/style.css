@@ -144,6 +144,10 @@ li, a, button {
     width: 55%;
     height: 45%;
     transition: 1s;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
 
    
 }
@@ -469,6 +473,7 @@ margin-top: 0%;
 
 .redes {
     width: 50%;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     align-self: center;

@@ -1,87 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/styledash.css">
 </head>
+
 <body>
-    
-</body>
-</html>
-   <div class="dashboard1">
-  
-      <h1>Gráfico Idade</h1>
-      <span>O seguinte gráfico tem como intuito demonstrar a idade dos fãs da banda</span>
-      <div class="graficoidade">
-        <div>
-          <canvas id="myChart"></canvas>
-      </div>
-      </div>
-
-
-
-
-
-
-   </div>
-<div class="dashboards">
-  
-    <div>
-        <canvas id="myChart"></canvas>
+  <div class="header">
+    <div class="titulo">
+        <h1>O terno</h1>
     </div>
-    <div>
-        <canvas id="myChart2"></canvas>
+    <nav>
+        <ul class="navbar_links">
+            <li><a onclick="changescreenloginsobre()">Sobre</a></li>
+            <li><a onclick="changescreenloginintegrantes()">Integrantes</a></li>
+            <li><a onclick="changescreenloginalbuns()">Albuns</a></li>
+            <li><a onclick="changescreenloginagenda()">Agenda</a></li>
+        </ul>
+    </nav>
+    <button onclick="ChangeScreenSair()" class="BntEntrar">Sair</button>
+</div>
+<div class="backgroundHeader">
+</div>
+
+  <div class="titulo_dash">
+    <h1 class="h1_text_dash"> Gráficos</h1>
+  </div>
+
+<div class="graficos">
+    <div class="dashboard1">
+  
+        <h1>Gráfico Idade dos usuarios</h1>
+        <span>O seguinte gráfico tem como intuito demonstrar a idade dos fãs da banda</span>
+  
+        <div class="graficoidade">
+            <canvas id="myChart"></canvas>
+        </div>
+
     </div>
 
-    
 
-    <script>
-        const labels = [
-          '15-20',
-          '21-25',
-          '25-30',
-          '31-35',
-          '36-40',
-          '41-...',
-        ];
+
+    <div class="dashboard2">
+
+        <h1>Gráfico Idade - Album</h1>
+        <span>O seguinte gráfico tem como intuito demonstrar a preferência do album do usuário de acordo com a faixa
+         etaria</span>
       
-        const data = {
-          labels: labels,
-          datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
-          }]
-        };
-      
-        const config2 = {
-          type: 'bar',
-          data: data,
-          options: {}
-        };
+        <div class="graficoalbum">
+            <canvas id="myChart2"></canvas>
+        </div>
 
-        const config = {
-          type: 'line',
-          data: data,
-          options: {}
-        };
-      </script>
+    </div>
 
-<script>
-    const myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
-
-    const myChart2 = new Chart(
-      document.getElementById('myChart2'),
-      config2
-    );
-  </script>
 
 </div>
 
+</body>
+
+</html>
+
+
+
+
+
+<script>
+  /* Gafico de 1: somente idade dos usuarios*/
+
+  /*eixo X ___ */
+  const labels1 = [
+    '15-20',
+    '21-25',
+    '25-30',
+    '31-35',
+    '36-em diante',
+  ];
+  /* fim eixo X ____ */
+
+  /* dados do grafico 1 */
+
+  const data1 = {
+    labels: labels1,
+    datasets: [{
+      label: 'Idade',
+      backgroundColor: '#e88d23',
+      borderColor: '#e88d23',
+      data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+  };
+
+  /* fim dados do grafico 1 */
+  /* config graficos 1 */
+  const config1 = {
+    type: 'bar',
+    data: data1,
+    options: {}
+  };
+
+  /* fim config grafico 1 */
+  /* FIM Gafico de 1: somente idade dos usuarios*/
+
+
+
+
+
+
+
+  /* Gragico 2: Percentual de preferência de album de acordo com a faixa etária*/
+
+  /*eixo X ___ */
+  const labels2 = [
+    '66',
+    'Melhor do que parece',
+    'O terno',
+    'atras / alem',
+  ];
+  /* fim eixo X ____ */
+  /* dados do grafico 2 */
+
+  const data2 = {
+    labels: labels2,
+    datasets: [{
+      label: '15 a 25',
+      backgroundColor: '#b3313b',
+      borderColor: '#b3313b',
+      data: [0, 10, 5, 2, 20, 30, 45],
+    },
+
+    {
+      label: '26 a 35',
+      backgroundColor: '#13476f',
+      borderColor: '#13476f',
+      data: [15, 5, 40, 2, 20, 30, 45],
+    },
+
+    {
+      label: '36 em diante',
+      backgroundColor: '#e88d23',
+      borderColor: '#e88d23',
+      data: [30, 20, 2, 20],
+    }]
+  };
+
+  /* fim dados do grafico 2 */
+  /* config grafico 2 */
+
+
+
+  const config2 = {
+    type: 'line',
+    data: data2,
+    options: {}
+  };
+
+
+
+  /*fim config grafico 2*/
+
+
+</script>
+
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config1
+  );
+
+  const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config2
+  );
+</script>
+
+</div>

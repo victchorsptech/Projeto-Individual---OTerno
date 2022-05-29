@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +8,23 @@
     <title>O Terno | login</title>
     <link rel="stylesheet" href="../CSS/stylelogin.css">
 </head>
+
 <body>
     <div class="header">
-        <div class="titulo"><h1>O terno</h1></div>
-            <nav>
-                <ul class="navbar_links">
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="">Integrantes</a></li>
-                    <li><a href="">Albuns</a></li>
-                    <li><a href="">Agenda</a></li>
-                </ul>
-            </nav>
-            <a href=""><button class="BntEntrar">Cadastrar</button></a>
+        <div class="titulo">
+            <h1>O terno</h1>
+        </div>
+        <nav>
+            <ul class="navbar_links">
+                <li><a onclick="changescreenloginsobre()">Sobre</a></li>
+                <li><a onclick="changescreenloginintegrantes()">Integrantes</a></li>
+                <li><a onclick="changescreenloginalbuns()">Albuns</a></li>
+                <li><a onclick="changescreenloginagenda()">Agenda</a></li>
+            </ul>
+        </nav>
+        <button onclick="ChangeScreenCadastro()" class="BntEntrar">Cadastrar</button>
     </div>
-    
+
     <div class="backgroundHeader">
     </div>
 
@@ -30,17 +34,113 @@
 
         <div class="Quadrado_login1">
             <h1>Login</h1>
-            <span class="email_text">Email:</span><input id="email" placeholder="insira seu email"><br>
-            <span class="senha_text">Senha:</span><input id="senha" type="password" placeholder="************">
-            <button class="BntEntrarLogin">Entrar</button></a>
+            <span class="email_text">Email:</span><input id="email_input" placeholder="insira seu email"><br>
+            <span class="senha_text">Senha:</span><input id="senha_input" type="password" placeholder="************">
+            <button onclick="entrar()" class="BntEntrarLogin">Entrar</button></a>
         </div>
 
         <video autoplay loop muted poster="../../Itens/Vídeos/videofundo66_Trim.mp4" class="video">
             <source src="../../Itens/Vídeos/videofundo66_Trim.mp4">
         </video>
- 
+
     </div>
 
-    
+
 </body>
+
 </html>
+
+
+<script>
+    function changescreenloginsobre() {
+        window.location.href = "./index.html#sobre";
+    }
+
+    function changescreenloginintegrantes() {
+        window.location.href = "./index.html#Integrantes";
+
+    }
+
+    function changescreenloginalbuns() {
+        window.location.href = "./index.html#Albuns";
+    }
+
+    function changescreenloginagenda() {
+        window.location.href = "./index.html#Agenda";
+    }
+
+
+    function ChangeScreenCadastro() {
+        window.location.href = "./Cadastro.html"
+    }
+
+    function entrar() {
+
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>

@@ -8,15 +8,15 @@
     <title>O Terno | formulário</title>
 </head>
 <body>
-
+    
     <div class="header">
         <div class="titulo"><h1>O terno</h1></div>
             <nav>
                 <ul class="navbar_links">
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#Integrantes">Integrantes</a></li>
-                    <li><a href="#Albuns">Albuns</a></li>
-                    <li><a href="#Agenda">Agenda</a></li>
+                    <li><a onclick="changescreenloginsobre()">Sobre</a></li>
+                    <li><a onclick="changescreenloginintegrantes()">Integrantes</a></li>
+                    <li><a onclick="changescreenloginalbuns()">Albuns</a></li>
+                    <li><a onclick="changescreenloginagenda()">Agenda</a></li>
                 </ul>
             </nav>
             <a href=""><button class="BntSair">Sair</button></a>
@@ -43,6 +43,825 @@
 
     <a class="link" href="">Estatística para NERDS</a>
 </div>
-    
+
+<div id="div_para_vetor">
+    <h1 class="h1_text">Ver Letra</h1>
+    Selecione uma música:
+    <select id="select_musica">
+      <option value="Value0"></option>
+      <option value="Value1">Morto</option>
+      <option value="Value2">Volta</option>
+      <option value="Value3">Atrás/Além</option>
+      <option value="Value4">Eu tomei coca, você encheu a cara</option>
+      <option value="Value5">Melhor do que parece</option>
+      <option value="Value6">Ai ai como eu me iludo</option>
+      <option value="Value7">Culpa</option>
+      <option value="Value8">Pra sempre sera</option>
+      <option value="Value9">Pegando Leve</option>
+      <option value="Value10">Não espero mais</option>
+      <option value="Value11">Tudo que eu não fiz</option>
+      <option value="Value12">Volta e meia</option>
+      <option value="Value13">66</option>
+      <option value="Value14">O Bilhete</option>
+      <option value="Value15">Profundo / Superficial</option>
+      <option value="Value16">Vamos assumir</option>
+      <option value="Value17">A historia mais velha do mundo</option>
+      <option value="Value18">Depois que a dor passar</option>
+      <option value="Value19">Eu confesso</option>
+      <option value="Value20">Eu vou</option>
+      <option value="Value21">Bielzinho / Bielzinho</option>
+      <option value="Value22">Passado / Futuro</option>
+      <option value="Value23">Brazil</option>
+      <option value="Value24">Deixa Fugir</option>
+      <option value="Value25">E no final</option>
+      <option value="Value26">Eu não preciso de ninguém</option>
+      <option value="Value27">Minas Gerais</option>
+      <option value="Value28">Nada / Tudo</option>
+      <option value="Value29">Medo do Medo</option>
+      <option value="Value30">Eu vou ter saudades</option>
+      <option value="Value31">Nó</option>
+      <option value="Value32">Tudo por ti</option>
+      <option value="Value33">Desaparecido</option>
+      <option value="Value34">Zé, assassino compulsivo</option>
+      <option value="Value35">Lua cheia</option>
+      <option value="Value36">Purquá Stains</option>
+      <option value="Value37">Blood Stains</option>
+      <option value="Value38">Bote ao contrário</option>
+      <option value="Value39">Quem é quem</option>
+      <option value="Value40">Pela metade</option>
+      <option value="Value41">Compromisso</option>
+      <option value="Value42">O cinza</option>
+      <option value="Value43">O orgulho e o perdão</option>
+      <option value="Value44">Harmonium</option>
+      <option value="Value45">Modão de Pinheiros</option>
+      <option value="Value46">Quando eu me aposentar</option>
+      <option value="Value47">Vanguarda?</option>
+      <option value="Value48">Purquá Mecê</option>
+      <option value="Value49">Quando estamos todos dormindo</option>
+      <option value="Value50">Tic tac</option>
+      <option value="Value51">Centro de Ossanha</option>
+      <option value="Value52">Enterrei Vivo</option>
+      <option value="Value53">Junk</option>
+      <option value="Value54">Papa Francisco perdoa Tom Zé</option>
+      </select>
+      <button class= "btnVerLetra" onclick="VerLetra()">Ver Letra</button>
+      <div id="letra_musica">
+        
+    </div>
+</div>
+
 </body>
 </html>
+
+<script>
+        function changescreenloginsobre() {
+        window.location.href = "./index.html#sobre";
+    }
+
+    function changescreenloginintegrantes() {
+        window.location.href = "./index.html#Integrantes";
+
+    }
+
+    function changescreenloginalbuns() {
+        window.location.href = "./index.html#Albuns";
+    }
+
+    function changescreenloginagenda() {
+        window.location.href = "./index.html#Agenda";
+    }
+    
+    function VerLetra() {
+        var select = select_musica.value
+        var musica = ""
+      
+        if (select == "Value1") {
+             musica = `Pode esquecer toda a razão<br>
+                        Também não tem mais coração<br>
+                            Nada será como era antes<br>
+                            <br>
+                            <br>
+
+Sua pele já apodreceu<br>
+Venderam tudo o que era seu<br>
+A sua casa tá vazia<br>
+<br>
+<br>
+Morto, morto, morto<br>
+Por que não vê que já morreu?<br>
+Passaram dois, dez, vinte anos<br>
+E só você não percebeu<br>
+<br>
+<br>
+
+Se você quiser acreditar<br>
+No cemitério do Araçá<br>
+Tem uma pedra com seu nome<br>
+<br>
+<br>
+
+Quando a gente morre é pra morrer<br>
+E também vale pra você<br>
+Pode esquecer suas pendências<br>
+<br>
+<br>
+
+Morto, morto, morto<br>
+Por que não vê que já morreu?<br>
+Passaram dois, dez, vinte anos<br>
+E só você não percebeu<br>
+<br>
+<br>
+
+Morto, morto, morto<br>
+Por que não vê que já morreu?<br>
+Passaram dois, dez, vinte anos<br>
+E só você não percebeu<br>
+<br>
+<br>
+
+Morto, morto, morto<br>
+Por que não vê que já morreu?<br>
+Passaram dois, dez, vinte anos<br>
+E só você não percebeu<br>`
+
+
+        } else if (select == "Value2") {
+             musica = `Vem, volta<br>
+Que eu estou te esperando desde que eu nasci<br>
+Minha vida pro momento que eu te conheci<br>
+E o amor que eu guardava, eu guardei pra você<br>
+<br>
+<br>
+
+Vai, corre<br>
+Vai buscar aquilo que vai te fazer feliz<br>
+E então volta pro meu lado pra gente curtir<br>
+Numa boa, só fazendo o que a gente quis<br>
+<br>
+<br>
+
+Volta logo, volta logo, volta<br>
+Volta logo, volta logo, volta<br>
+<br>
+<br>
+
+Discorda do que eu penso<br>
+Eu não me importo, eu quero só você<br>
+Tantos medos e manias que eu acumulei<br>
+Quando eu fico do seu lado eu costumo esquecer<br>
+<br>
+<br>
+
+Vem, volta<br>
+Que eu estou te esperando desde que eu nasci<br>
+Minha vida pro momento que eu te conheci<br>
+E o amor que eu guardava, eu guardei pra você<br>
+E a pessoa que eu sonhava, eu vi aparecer<br>
+E os momentos que tivemos e ainda vamos ter<br>
+As viagens que fizemos e vamos fazer<br>
+Ou nos tempos mais difíceis que eu te confortei<br>
+Se eu chorei você chegou, me confortou também<br>
+As cervejas do começo, a gente se deu bem<br>
+Brincadeiras com o futuro e quem nós vamos ser<br>
+E o amor que a gente tem e sempre vamos ter<br>
+E essa música depois que a gente morrer<br>
+<br>
+<br>
+
+Volta logo, volta logo, volta<br>
+Volta logo, volta logo, volta<br>`
+
+
+        } else if(select == "Value3") {
+            musica = `Recuperando as memórias<br>
+Do que eu fiz<br>
+No tempo junto ao seu lado<br>
+Fui feliz<br>
+Quem sabe um dia eu te encontro<br>
+Por aí<br>
+Será que ainda vai lembrar<br>
+De mim?<br>
+<br>
+<br>
+
+Milhas e milhas distante<br>
+Anos e anos atrás<br>
+Muitas e muitas lembranças<br>
+Você lembra?<br>
+Você lembra também?<br>
+Você lembra?<br>
+Você lembra de mim?<br>
+<br>
+<br>
+
+No dia que eu fui embora<br>
+Resolvi<br>
+Deixar pra trás minha história<br>
+Descobrir<br>
+Entender quem sou agora<br>
+Ir e vir<br>
+Quem sabe eu vá me encontrar<br>
+Por aí<br>
+<br>
+<br>
+
+Milhas e milhas distante<br>
+Anos e anos depois<br>
+Muita, mas muita esperança<br>
+Você tenta<br>
+Você tenta também<br>
+Você tenta<br>
+Você tenta ir além<br>
+<br>
+<br>
+
+No dia que eu fui embora<br>
+Resolvi<br>
+Deixar pra trás minha história<br>
+Descobrir<br>
+Entender quem sou agora<br>
+Ir e vir<br>
+Quem sabe eu vá me encontrar<br>
+Por aí<br>
+<br>
+<br>
+
+Milhas e milhas distante<br>
+Anos e anos depois<br>
+Muita, mas muita esperança<br>
+Você tenta<br>
+Você tenta também<br>
+Você tenta<br>
+Você tenta ir além<br>`
+
+        } else if (select == "Value4") {
+            musica = `Você me pergunta porque é que eu não bebo
+É que eu gosto de coca, ué, eu acho gostoso
+E não vejo motivo pra sempre ficar muito louco
+
+Ainda se não fosse coisa rotineira
+Não acho problema, eu não vejo besteira
+Mas você tá sempre breaco a semana inteira
+
+Eu vejo você acordar na sarjeta
+E ficar reclamando da dor de cabeça
+Pode até não ser, mas pra mim isso é que é ser careta
+
+Se ontem você ficou muito chapado
+E agora acordou com seu braço quebrado
+E não vai mais tocar bateria no show de amanhã
+
+Se fodeu, se fodeu
+Quem mandou, quem mandou?
+Eu tomei coca, você encheu a cara
+E você que se fodeu
+Ha, ha, ha
+
+Você me chamou de viadinho
+Só porque eu tomei uma coca
+Mas você tomou no
+
+E você nem pode me chamar de viado
+Só porque eu não bebo ou não fico chapado
+Uma vez que sempre que cê bebe, cê muda de lado
+
+Se ontem você ficou muito chapado
+E agora acordou com seu braço quebrado
+E não vai mais tocar bateria no show de amanhã^
+
+Se fodeu, se fodeu
+Quem mandou, quem mandou?
+Eu tomei coca, você encheu a cara
+E você que se fodeu
+Ha, ha, ha
+
+Você me chamou de viadinho
+Só porque eu tomei uma coca
+Mas você tomou no cu
+
+Você me pergunta porque é que eu não bebo
+É que eu gosto de coca, ué, eu acho gostoso
+E não vejo motivo pra sempre ficar muito louco
+
+Ainda se não fosse coisa rotineira
+Não acho problema, eu não vejo besteira
+Mas você tá sempre breaco a semana inteira
+
+Eu vejo você acordar na sarjeta
+E ficar reclamando da dor de cabeça
+Pode até não ser, mas pra mim isso é que é ser careta
+
+Se ontem você ficou muito chapado
+E agora acordou com seu braço quebrado
+E não vai mais tocar bateria no show de amanhã
+
+Se fodeu, se fodeu
+Quem mandou, quem mandou?
+Eu tomei coca, você encheu a cara
+E você que se fodeu
+Ha, ha, ha
+
+Você me chamou de viadinho
+Só porque eu tomei uma coca
+Mas você tomou no cu
+Ha, ha, ha, se fodeu
+
+E você nem pode me chamar de viado
+Só porque eu não bebo ou não fico chapado
+Uma vez que sempre que cê bebe, cê muda de lado
+
+E eu não posso te dar mais um gole de pinga
+Que não dá três minutos, cê tira a camisa
+E mais dois, você abaixa a calça e vomita no pé
+
+Se fodeu, se fodeu
+Quem mandou, quem mandou?
+Eu tomei coca, você encheu a cara
+E você que se fodeu
+Ha, ha, ha
+
+Você me chamou de viadinho
+Só porque eu tomei uma coca
+Mas você tomou no cu`
+        } else if (select == "Value5") {
+            musica = `Eu ando muito insatisfeito
+Nada me agrada mais
+Eu não consigo ouvir um disco
+Ou ver um filme e
+Um livro, eu claramente não vou ler
+
+Vou procurar em todo canto até
+Achar onde eu perdi
+Minha vontade, o meu desejo
+Ou o prazer de conseguir
+E a paciência que eu preciso para curtir
+
+Eu tenho achado tudo chato, tudo ruim
+Será que o chato aqui sou eu?
+Será que fiquei viciado em novidade
+E agora o tédio me enlouqueceu?
+
+Vou procurar em todo canto até
+Achar onde eu perdi
+Minha vontade, o meu desejo
+Ou o prazer de conseguir
+E a paciência que eu preciso para curtir
+
+Tudo está melhor do que parece
+Eu olho e vejo tudo errado
+Faz tempo que está tudo certo`
+
+        } else if (select == "Value6") {
+            musica = `Ai, ai, como eu me iludo
+Dessa vez eu viajei
+Meu Deus confundi tudo
+Nossa como eu vacilei
+
+Porque eu já fiz isso milhares de vezes
+Como é que eu nunca aprendi
+A não gostar das pessoas tão rápido assim
+
+Ai, ai, ai, como eu me iludo
+Dessa vez eu viajei
+Meu Deus confundi tudo
+Nossa como eu vacilei
+
+Porque eu já fiz isso milhares de vezes
+Como é que eu nunca aprendi
+A não gostar das pessoas tão rápido assim
+
+Eu pensei que ia mudar
+E que estava bem claro
+Depois dos erros e erros da ultima vez
+Mas quando vejo me pego fazendo até planos
+De apresentar pro meus pais
+To vendo filme demais
+
+Ai, como eu me iludo
+Dessa vez eu viajei
+Meu Deus confundi tudo
+Nossa como eu vacilei
+
+Porque eu já fiz isso milhares de vezes
+Como é que eu nunca aprendi
+A não gostar das pessoas tão rápido assim`
+
+        } else if (select == "Value7") {
+            musica = `Parece que eu fico o tempo todo culpado
+Com culpa eu não sei do quê
+Quem vai me desculpar se eu não fiz nada de errado?
+Que mais que eu posso fazer?
+
+Será que as coisas que eu faço
+Penso que não têm problema
+Na verdade são pecado
+E é por isso que eu me sinto tão culpado?
+Ou será que a sociedade diz que é para eu ser contente
+Quando eu fico meio triste
+Ou até meio chateado
+Eu fico mais, pois acho que eu sou o culpado
+
+Uh uh uh uh culpa
+Ah ah ah culpa
+Ah ah ah culpa
+
+Desculpa qualquer coisa
+Minha culpa, minha culpa, culpa minha de pedir perdão
+Culpa de fazer sucesso, culpa de ser um fracasso
+Culpa sua, culpa de tristão
+
+Será que as coisas que eu faço
+Penso que não têm problema
+Na verdade são pecado
+E é por isso que eu me sinto tão culpado?
+Ou será que a sociedade diz que é para eu ser contente
+Quando eu fico meio triste
+Ou até meio chateado
+Eu fico mais
+Pois acho que eu sou o culpado
+
+Uh uh uh uh culpa
+Ah ah ah culpa
+Ah ah ah culpa`
+        } else if (select == "Value8") {
+            musica = `De vez em quando na vida se pode encontrar
+Raro, mas não impossível, de fato, é amar
+Existem muitas ciladas e muita ilusão
+Existe gente afobada, idealização
+
+Mas quando é pra sempre, pra sempre será
+Mesmo que acabe, não vai terminar
+Pois no final, na conclusão
+
+É bom ter tido um amor de verdade
+Que bom ter tido um amor de verdade
+Levar comigo um amor de verdade
+Correr perigo, amar de verdade
+
+Talvez tivesse o que chamam coração vulgar
+Hoje sozinho me cuido pra não me enganar
+Daquele primeiro amor não vou nunca esquecer
+Poucos, contados nos dedos, chegando em você
+
+Mas quando é pra sempre, pra sempre será
+Mesmo que acabe, não vai terminar
+Se no final, na conclusão
+
+É bom ter tido um amor de verdade
+Que bom ter tido um amor de verdade
+Levar comigo um amor de verdade
+Correr perigo, amar de verdade
+
+Mas quando é pra sempre, pra sempre será
+Mesmo que acabe, não vai terminar
+Pois no final, na conclusão
+
+É bom ter tido um amor de verdade
+Que bom ter tido um amor de verdade
+Levar comigo um amor de verdade
+Correr perigo, amar de verdade
+`
+        } else if (select == "Value9") {
+            musica = `Preocupado, viciado
+No ritmo frenético
+De um jovem anos 10
+Não sei quando parar
+
+Apegado, delicado
+Um medo do silêncio
+Do vazio, a solidão
+Eu quero tudo, eu
+
+Quero descansar, mas também quero sair
+Quero trabalhar, mas quero me divertir
+Quero me cobrar, mas saber não me ouvir
+Quero começar, mas quero chegar no fim
+
+Eu tô pegando leve
+Tentando descansar
+Meu nível de estresse
+Ainda vai me matar
+Se a vida vai depressa
+Com pressa ainda mais
+Eu tô pegando leve
+Hoje eu não vou trabalhar
+
+Dividido, indeciso
+Me cansam tantos hipsters
+E modernos de plantão
+Me cansa ser mais um
+
+Acabado, esgotado
+Eu já cheguei no fim
+Recomecei e aqui estou eu
+No fim de novo, eu
+
+Quero me encontrar, mas quero deixar fugir
+Já me apaixonei, mas já me desiludi
+Já fiquei sozinho, mas eu nunca morri
+Às vezes, eu canso, é demais para mim
+
+Eu tô pegando leve
+Tentando descansar
+Meu nível de estresse
+Ainda vai me matar
+Se a vida vai depressa
+Com pressa ainda mais
+Eu tô pegando leve
+Hoje não vou trabalhar`
+        } else if (select == "Value10") {
+            musica `Quanto tempo eu esperei alguém
+Eu andava sem ter direção
+Inventei caminhos, me perdi
+Me encontrei quando te conheci
+
+Eu tenho um tipo de certeza com você que me faz bem
+Eu sei que estou apaixonado
+E que você me quer também
+Mal posso crer mas acho que é a minha vez de ser feliz
+
+Com você eu não espero mais
+Eu te olho e só posso pensar
+Que valeu a pena esperar
+Sou feliz como não fui jamais`
+        } else if (select == "Value11") {
+            musica = `E o destino que eu criei pra mim
+Que era pra sempre, pra durar
+E eu não quis ver, e acreditar
+Quando eu mudei e aquilo não me serviu mais
+
+Tanto tempo eu procurei chegar
+Naquele ponto que eu cheguei
+Eu tive tudo, e não parei
+Talvez, no fundo, eu goste mais de procurar
+
+Na verdade eu sei que é muito cedo pra parar pelo caminho
+Não vou ficar contente, preso num final feliz
+Se tudo se transforma, tudo passa nesse mundo
+Eu quero ficar velho, eu quero tudo que eu não fiz
+Eu quero ficar velho, eu quero tudo que eu não fiz
+
+Ninguém sabe na primeira vez
+Nem na segunda
+A esperança num roteiro pronto
+E o choque do que não era pra ser
+
+Do que não era pra ser e foi
+Surge um começo
+Mais aberto e leve que um final feliz
+E o peso de não poder mais desenvolver
+
+Na verdade eu vou tentar viver como eu quiser daqui pra frente
+Não quero o que eu fui defina o jeito que eu sou
+Eu não sou mais criança, eu não sou mais adolescente
+Eu quero me sentir exatamente onde eu estou
+
+Eu sei que é muito cedo pra parar pelo caminho
+Não vou ficar contente, preso num final feliz
+Se tudo se transforma, tudo passa nesse mundo
+Eu quero ficar velho, eu quero tudo que eu não fiz
+Eu quero ficar velho, eu quero tudo que eu não fiz
+
+Eu quero ficar velho, eu quero tudo que eu não fiz
+Quero ficar velho, eu quero tudo que eu não fiz
+Eu quero ficar velho, eu quero tudo que eu não fiz`
+
+        } else if (select == "Value12") {
+            musica = `Tenho medo de ainda gostar de você
+O que eu fiz não me dá chance de me arrepender
+Tomo um susto ainda quando acordo sem ninguém
+Prefiro pensar que tudo bem
+
+Dou muita volta e volta e meia ainda volto pra você
+Dou meia volta e volto meio incerto do que eu vou fazer
+
+Quando o rádio toca uma música de amor
+Penso que é comigo que conversa o cantor
+Como ele sabe tudo o que me aconteceu?
+Mudo de estação, também sou eu
+
+Dou muita volta e volta e meia ainda volto pra você
+Dou meia volta e volto meio incerto do que eu vou fazer
+
+E o que eu vou fazer?
+Tenho que pensar sozinho
+Não vão me ajudar
+Eu vou decidir sozinho
+
+[Shintaro Sakamoto]
+Yoake mae, shizumari kaetta heya ni hitori
+Mata kyō mo iru, kagami no naka no shiranai otoko
+Kara no gurasu
+Miminari, mahi
+Dokomade mo oikakete kuru
+Mukashi no jibun
+
+[Devendra Banhart]
+Cuando el radio toca una canción de amor
+Pienso que es conmigo que conversa el cantor
+¿Cómo es que sabe todo lo que me pasó?
+Cambio la estación, también soy yo
+
+[Refrão: Tim Bernardes & Shintaro Sakamoto]
+Dou muita volta e volta e meia ainda volto pra você (o eba nigeru)
+Dou meia volta e volto meio incerto do que eu vou fazer (o eba nigeru)
+Dou muita volta e volta e meia ainda volto pra você (wakaranai doko e yuku)
+Dou meia volta e volto meio incerto do que eu vou fazer (wakanarai nani wo shiteiru)
+Dou muita volta e volta e meia ainda volto pra você`
+        } else if (select == "Value13") {
+            musica = `Me diz meu Deus o que é que eu vou cantar
+Se até cantar sobre
+Me diz meu Deus o que é que eu vou cantar?
+já foi cantado por alguém
+E além do mais tudo que é novo hoje em dia falam mal
+
+Então não sei o que eu devo fazer
+Pois se eu não posso inovar
+Eu vou cantar o que já foi
+E vão dizer que é nostalgia
+E que esse tempo já passou
+E eu tô por fora do que é novo
+Mas se é novo falam mal
+
+E hoje faz sucesso quem faz plágio diferente
+E de repente, pode até ser bem legal
+Pois já fizeram coisa boa no passado
+Que eu misturo como eu quero
+Com mais tudo que eu quiser
+
+Me diz como eu posso escrever
+Se só de fazer quatro versos
+Uma métrica abstrata e invisível me aparece
+Me dizendo que esse verso está comprido
+E já devia ter parado um tempo atrás
+E assim só tá piorando, olha só tá muito grande
+Olha que feio, tá enorme, faz favor de terminar!
+
+Então não sei o que eu devo fazer
+Pois se eu fizer bem quadradão
+Vão me chamar de quadradão
+Mas se eu fizer muito loucura
+Vão dizer que eu to maluco
+E "desse jeito você nunca vai ser muito popular!"
+
+Mas hoje o que toca na novela não tem graça
+E vai pro rádio pra tocar mais uma vez
+Então eu corro pra internet
+Sou garoto antenado
+E baixo o novo embalo quente
+Que é de sessenta e seis
+Sessenta e seis
+
+Do-de-ca-fo-ni-a, Do-de-ca-fo-ni-a
+Pra você!`
+        } else if (select == "Value14") {
+            musica = `Muitas e muitas lavagens depois
+No fundo do bolso do jeans
+Ela achou dois reais e um bilhete antigo
+De um moço, também antigo, que amou
+Comemorando e exaltando o ano que passou
+Passaram lado a lado
+Feliz aniversário, pra nós dois
+Te amo, volta logo, meu amor
+
+Do moço antigo, ela quase esqueceu
+Era preciso esquecer para poder prosseguir
+Bancar a despedida
+Das coisas boas não quis se lembrar
+Focou no que lhe fez mal para se convencer
+Fingir que não foi nada
+Como será que anda?, ela pensou
+Antigo e desbotado, um velho amor
+
+Lendo o bilhete era estranho pensar
+Que ela o levava escondido no bolso do jeans
+Por esse tempo todo
+Sorriu baixinho, o bilhete nas mãos
+O jeito que ele dizia quando começou
+Você está tão bonita!
+Ainda existe e vai durar o amor
+Muitas e muitas lavagens depois
+
+Feliz aniversário pra nós dois
+Te amo, volta logo, meu amor`
+        }else if (select == "Value15") {
+            musica = `Muitas e muitas lavagens depois
+No fundo do bolso do jeans
+Ela achou dois reais e um bilhete antigo
+De um moço, também antigo, que amou
+Comemorando e exaltando o ano que passou
+Passaram lado a lado
+Feliz aniversário, pra nós dois
+Te amo, volta logo, meu amor
+
+Do moço antigo, ela quase esqueceu
+Era preciso esquecer para poder prosseguir
+Bancar a despedida
+Das coisas boas não quis se lembrar
+Focou no que lhe fez mal para se convencer
+Fingir que não foi nada
+Como será que anda?, ela pensou
+Antigo e desbotado, um velho amor
+
+Lendo o bilhete era estranho pensar
+Que ela o levava escondido no bolso do jeans
+Por esse tempo todo
+Sorriu baixinho, o bilhete nas mãos
+O jeito que ele dizia quando começou
+Você está tão bonita!
+Ainda existe e vai durar o amor
+Muitas e muitas lavagens depois
+
+Feliz aniversário pra nós dois
+Te amo, volta logo, meu amor`
+
+        } else if (select == "Value16") {
+
+            musica = `Madrugada outra vez, fim de um dia
+Tenho medo de dormir
+Eu me evito
+Eu adio outro final, é difícil
+É tão claro de ver, é gritante
+Imagine no meu leito de morte
+Quero ver desapegar, é um parto
+
+Tudo agora, tudo ao mesmo tempo
+Todas e nenhuma direção
+Medo do que eu possa estar perdendo
+Quem decide vai ter que abrir mão
+Triste geração que pode tudo
+Quando tudo ficou tão banal?
+Se afogou no raso, procurando
+Profundo no superficial
+
+No meu sonho eu dormi, estou pleno
+Tenho medo de acordar, eu esqueço
+O começo e o final são o mesmo
+O vazio que eu cantei é gigante
+Desespero é ver ninguém do seu lado
+E tentar criar alguém inventado
+
+Tudo agora, tudo ao mesmo tempo
+Todas e nenhuma direção
+Medo do que eu possa estar perdendo
+Quem decide vai ter que abrir mão
+Triste geração que pode tudo
+Quando tudo ficou tão banal?
+Se afogou no raso, procurando
+Profundo no superficial
+
+Triste geração que pode tudo
+Quando tudo ficou tão banal?
+Se afogou no raso, procurando
+Profundo no superficial`
+        } else if (select == "Value17") {
+            musica = `Tanta gente sofrendo sozinha
+Tanta gente sofrendo a dois
+Esperando fazer com que a vida
+Seja idêntica ao que se sonhou
+
+A gente tem tempo
+Mas o pensamento
+Viaja mais rápido que a nossa ação
+
+E a gente machuca
+E é machucado
+Apegado à uma ilusão
+
+E eu fiz de tudo pra gente dar certo e não deu
+Meu bem
+Vamos assumir
+
+Tem vez que a gente acredita que era pra ser
+Mas a gente tem pressa
+E vê o que quer ver
+
+Tantas expectativas frustradas
+Cada uma numa direção
+Projetando uma imagem no outro
+Ficou preso na imaginação
+
+A gente tem tempo
+Mas o pensamento
+Viaja mais rápido que a nossa ação
+
+E a gente machuca
+E é machucado
+Apegado à uma ilusão
+
+E eu fiz de tudo pra gente dar certo e não deu
+Meu bem
+Vamos assumir
+
+Tem vez que a gente acredita que era pra ser
+Mas a gente tem pressa
+E vê o que quer ver`
+        } else if (select == "Value18") {
+            musica = ``
+        }
+
+
+        letra_musica.innerHTML = `${musica}`
+}
+</script>
