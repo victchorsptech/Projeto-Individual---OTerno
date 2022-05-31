@@ -133,7 +133,7 @@ li, a, button {
     box-shadow: 10px 40px 40px black;
     margin-left: 33%;
     width:30%;
-    height: 520px;
+    height: 570px;
     background-color: black;
     border: 2px solid #e5a400;
     margin-top: 10%;
@@ -171,6 +171,20 @@ li, a, button {
     margin-bottom: 5px;
 }
 .senha_text{
+    color: #edf0f1;
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.idade_text {
+    color: #edf0f1;
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.select_text {
     color: #edf0f1;
     align-self: center;
     margin-top: 10px;
@@ -216,13 +230,33 @@ li, a, button {
     align-self: center;
     height: 40px;
     font-size: 15px;
-
-    
 }
+
+#idade_input {
+    background-color: #24252A;
+    border: 1px solid #e5a400 ;
+    border-radius: 5px;
+    width: 80%;
+    align-self: center;
+    height: 40px;
+    font-size: 15px;
+}
+
+#select_album {
+    background-color: #24252A;
+    color: #e5a400;
+    border: 1px solid #e5a400 ;
+    border-radius: 5px;
+    width: 80%;
+    align-self: center;
+    height: 40px;
+    font-size: 15px;
+}
+
 #nome_input::-webkit-input-placeholder{
     font-style: bold;
-    padding-left: 150px;
-    
+    padding-left: 125px;
+
 }
 
 #email_input::-webkit-input-placeholder{
@@ -236,6 +270,11 @@ li, a, button {
 }
 
 #confirmacao_senha_input::-webkit-input-placeholder{
+    font-style: bold;
+    padding-left: 150px;
+}
+
+#idade_input::-webkit-input-placeholder {
     font-style: bold;
     padding-left: 150px;
 }
@@ -258,6 +297,7 @@ li, a, button {
     cursor: pointer;
     transition: all 0.3s ease 0s;
     margin-top: 40px;
+    margin-bottom: 30px;
     
 }
 
@@ -338,3 +378,42 @@ li, a, button {
 
    
 }
+
+
+
+
+/* cad de validação */ 
+.alerta_erro{
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .card_erro {
+    display: none;
+    background-color: #fff;
+    color: black;
+    width: 230px;
+    position: fixed;
+    border-radius: 4px;
+    border: #e6005a 3px solid;
+    padding: 10px;
+    margin-right: 10%;
+  }
+  
+  .card_erro #mensagem_erro{
+    font-weight: 500;
+    font-size: 20px;
+    color: #e6005a;
+  }
+
+
+  .loading-div {
+    width: 50px;
+    margin: auto;
+    display: none;
+  }
+  
+  .loading-div img {
+    height: 50px;
+    width: 50px;
+  }
