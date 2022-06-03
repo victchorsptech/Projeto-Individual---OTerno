@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/stylelogin.css">
     <script src="../js/funcoes.js"></script>
 </head>
@@ -45,13 +46,13 @@
             <span class="senha_text">Confirmar senha:</span><input type="password" id="confirmacao_senha_input" placeholder="************">
             <span class="idade_text">Informe sua idade:</span> <input type="number" id="idade_input" placeholder = "idade"> <br>
             <span class="select_text">Selecione o album predileto:</span><select id="select_album">
-                <option value="valor0"></option>
-                <option value="valor1">66</option>
-                <option value="valor2">Melhor do que parece</option>
-                <option value="valor3">O terno</option>
-                <option value="valor3">atras/alem</option>
+                <option value="0">---</option>
+                <option value="1">66</option>
+                <option value="2">Melhor do que parece</option>
+                <option value="3">O terno</option>
+                <option value="3">atras/alem</option>
             </select>
-            <button onclick= "cadastrar()" class="BntEntrarLogin">Cadastrar</button>
+            <button id="btn" onclick= "cadastrar()" class="BntEntrarLogin">Cadastrar</button>
         </div>
 
         <video autoplay loop muted poster="../../Itens/Vídeos/videofundoculpa.mp4" class="video">
@@ -64,23 +65,30 @@
         <img src="./assets/circle-loading.gif" id="loading-gif">
     </div>
 
+    <div id="modal" class="modalBody">
+        <div class="modalReadPlus">
+          <h2 id="campo_alerta"></h2>
+          <button class="button8" onclick="buttonBack()">Fechar</button>
+        </div>
+      </div>
+
 
     <script>
             function changescreenloginsobre() {
-        window.location.href = "./index.html#sobre";
+        window.location.href = "../index.html#Sobre";
     }
 
     function changescreenloginintegrantes() {
-        window.location.href = "./index.html#Integrantes";
+        window.location.href = "../index.html#Integrantes";
 
     }
 
     function changescreenloginalbuns() {
-        window.location.href = "./index.html#Albuns";
+        window.location.href = "../index.html#Albuns";
     }
 
     function changescreenloginagenda() {
-        window.location.href = "./index.html#Agenda";
+        window.location.href = "../index.html#Agenda";
     }
 
         function ChangeScreenEntrar(){
@@ -157,6 +165,78 @@
             cardErro.style.display = "none"
         }
     
+    </script>
+
+    <!-- validando campos -->
+
+    <script>
+
+
+  let btn = document.querySelector("#btn");
+  let input = document.querySelector("#nome_input");
+  let input2 = document.querySelector("#email_input");
+  let input3 = document.querySelector("#senha_input");
+  let input4 = document.querySelector("#confirmacao_senha_input");
+  let input5 = document.querySelector("#idade_input");
+  let input6 = document.querySelector("#select_album")
+
+  btn.addEventListener("click", () => {
+
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#%*?&])[A-Za-z\d@$!#%*?&]{8,20}$/;
+    var hidden3 = input3.value;
+    var hidden4 = input4.value;
+    const passwordTest = regex.test(hidden3);
+    const passwordTest2 = regex.test(hidden4);
+
+    if (input.value == "") {
+        modal.style.display = "block";
+      campo_alerta.innerHTML = "Não deixe o campo nome vazio!";
+    }
+    
+    else if (!isNaN(input.value)) {
+      modal.style.display = "block";
+      campo_alerta.innerHTML = "Digite apenas letras no campo nome!";
+    } 
+    
+    else if (input2.value == "") {
+      modal.style.display = "block";
+      campo_alerta.innerHTML = "Não deixe o campo email vazio!";
+    } 
+
+    else if (input2.value.includes("@") == false) {
+      modal.style.display = "block";
+      campo_alerta.innerHTML = "Digite @ no seu email!";
+    }
+    
+    else if (!passwordTest) {
+      modal.style.display = "block";
+      campo_alerta.innerHTML = `insira uma senha entre 8 e 20 caracteres, com pelo menos uma letra
+          maiuscula e uma letra minuscula, um número e um caractere especial!`;
+    } 
+    else if (hidden3.length != hidden4.length) {
+      modal.style.display = "block";
+      campo_alerta.innerHTML = "Digite senhas iguais!";
+    }
+  
+});
+
+
+function buttonBack() {
+
+
+
+modal.style.display = 'none'
+
+}
+
+
+
+
+
+
+
+
     </script>
 
     

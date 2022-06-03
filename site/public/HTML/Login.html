@@ -53,20 +53,20 @@
 
 <script>
     function changescreenloginsobre() {
-        window.location.href = "./index.html#sobre";
+        window.location.href = "../index.html#Sobre";
     }
 
     function changescreenloginintegrantes() {
-        window.location.href = "./index.html#Integrantes";
+        window.location.href = "../index.html#Integrantes";
 
     }
 
     function changescreenloginalbuns() {
-        window.location.href = "./index.html#Albuns";
+        window.location.href = "../index.html#Albuns";
     }
 
     function changescreenloginagenda() {
-        window.location.href = "./index.html#Agenda";
+        window.location.href = "../index.html#Agenda";
     }
 
 
@@ -114,10 +114,12 @@
 
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.id_user;
+                    sessionStorage.IDADE_USUARIO = json.idade;
+                    sessionStorage.ALBUM_PREDILETO_USUARIO = json.fk_album;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./deashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
