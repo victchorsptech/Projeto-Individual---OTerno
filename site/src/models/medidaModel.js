@@ -24,6 +24,27 @@ function buscarUltimasMedidas(id_user, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
+function BuscarAlbum1() {
+    const query = `select count(id_user) AS 'qtd_album' from usuario where fk_album = 1;`
+
+    return database.executar(query)
+}
+
+function BuscarAlbum2() {
+    const query = `select count(id_user)  AS 'qtd_album' from usuario where fk_album = 2;`
+    return database.executar(query)
+}
+
+function BuscarAlbum3() {
+    const query = `select count(id_user) AS 'qtd_album' from usuario where fk_album = 3;`
+    return database.executar(query)
+}
+
+function BuscarAlbum4() {
+    const query = `select count(id_user) AS 'qtd_album' from usuario where fk_album = 4;`
+    return database.executar(query)
+}
+
 function BuscarIdadeEntre15e25(){
     const query = `
     SELECT COUNT(idade) AS 'qtd_idade' FROM usuario 
@@ -79,5 +100,11 @@ module.exports = {
     buscarUltimasMedidas,
     BuscarIdadeEntre25e35,
     BuscarIdadeMaior35,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+
+    BuscarAlbum1,
+    BuscarAlbum2,
+    BuscarAlbum3,
+    BuscarAlbum4,
+
 }

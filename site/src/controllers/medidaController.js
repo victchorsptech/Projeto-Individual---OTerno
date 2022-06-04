@@ -27,16 +27,16 @@ function BuscarIdade(req, res) {
     let idade = [];
 
     medidaModel.BuscarIdadeEntre15e25().then((response) => {
-       const tamanho = response.length;
-       if(tamanho > 0){
+        const tamanho = response.length;
+        if (tamanho > 0) {
             idade.push(response)
             medidaModel.BuscarIdadeEntre25e35().then((response) => {
                 const t1 = response.length;
-                if(t1 > 0){
+                if (t1 > 0) {
                     idade.push(response);
                     medidaModel.BuscarIdadeMaior35().then((response) => {
                         const t2 = response.length;
-                        if(t2 > 0){
+                        if (t2 > 0) {
                             idade.push(response)
                             res.json({
                                 idade
@@ -53,7 +53,7 @@ function BuscarIdade(req, res) {
                 console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             });
-       }
+        }
     }).catch(function (erro) {
         console.log(erro);
         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
@@ -61,8 +61,43 @@ function BuscarIdade(req, res) {
     });
 }
 
+function BuscarAlbum(req, res) {
+    let Album = [];
+
+    medidaModel.BuscarAlbum1().then((response) => {
+        const tamanho = response.length;
+        if (tamanho > 0) {
+            Album.push(response)
+            medidaModel.BuscarAlbum2().then((response) => {
+                const t1 = response.length;
+                if (t1 > 0) {
+                    Album.push(response)
+                    medidaModel.BuscarAlbum3().then((response) => {
+                        const t2 = response.length;
+                        if (t2 > 0) {
+                            Album.push(response)
+                            medidaModel.BuscarAlbum4().then((response) => {
+                                const t3 = response.length;
+                                if (t3 > 0) {
+                                    Album.push(response)
+
+                                    res.json({
+                                        Album
+                                    })
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    })
+}
+
+
 module.exports = {
     buscarUltimasMedidas,
-    BuscarIdade
+    BuscarIdade,
+    BuscarAlbum
 
 }

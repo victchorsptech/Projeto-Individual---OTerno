@@ -158,6 +158,8 @@
     var proximaAtualizacao;
   
     window.onload = obterIdades();
+
+    window.onload = ObterAlbuns();
   
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var id_user = sessionStorage.ID_USUARIO;
@@ -169,7 +171,9 @@
          tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + id_user + "</span>"
      } 
   
-   
+
+
+
     function obterIdades() {
       //  alterarTitulo(id_user)
       if (proximaAtualizacao != undefined) {
@@ -201,7 +205,7 @@
               datasets: [
                   {
                       yAxisID: 'y-umidade',
-                      label: 'De 15 a 25',
+                      label: 'De 15 a 24',
                       borderColor: '#b3313b',
                       backgroundColor: '#b3313b',
                       fill: true,
@@ -209,7 +213,7 @@
                   },
                   {
                       yAxisID: 'y-temperatura',
-                      label: 'De 26 a  ',
+                      label: 'De 25 a 34 ',
                       borderColor: '#13476f',
                       backgroundColor: '#13476f',
                       fill: true,
@@ -217,7 +221,7 @@
                   },
                   {
                       yAxisID: 'y-temperatura',
-                      label: 'Idade 15 / 25',
+                      label: 'De 35 em diante',
                       borderColor: '#e98c22',
                       backgroundColor: '#e98c22',
                       fill: true,
@@ -250,7 +254,7 @@
                         id: 'y-temperatura',
                         ticks: {
                             beginAtZero: true,
-                            max: 100,
+                            max: 50,
                             min: 0
                         }
                     }, {
@@ -260,7 +264,7 @@
                         id: 'y-umidade',
                         ticks: {
                             beginAtZero: true,
-                            max: 100,
+                            max: 50,
                             min: 0
                         }
                     },
@@ -271,7 +275,7 @@
                         id: 'y-umidade',
                         ticks: {
                             beginAtZero: true,
-                            max: 100,
+                            max: 50,
                             min: 0
                         }
                     },
@@ -302,6 +306,7 @@
                         dados.datasets[0].data.push(NewParm1);
                         dados.datasets[1].data.push(NewParm2);
                         dados.datasets[2].data.push(NewParm3);
+                        
 
                     window.grafico_bar.update();
 
@@ -311,6 +316,188 @@
           console.error('Nenhum dado encontrado ou erro na API');
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
           proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, parm1, parm2, parm3), 2000);
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+  
+    }
+
+
+    /* Grafico ALBUMS */
+
+
+    function ObterAlbuns() {
+      //  alterarTitulo(id_user)
+      if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+      }
+  
+      fetch(`/medidas/ultimas2`, { cache: 'no-store' }).then((response) => {
+        if (response.ok) {
+          response.json().then((resposta) => {
+
+            const a1 = resposta.Album[0][0].qtd_album;
+            const a2 = resposta.Album[1][0].qtd_album;
+            const a3 = resposta.Album[2][0].qtd_album;
+            const a4 = resposta.Album[3][0].qtd_album;
+
+            plotarGraficoAlbum(a1, a2, a3, a4);
+            console.log (a4.value)
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+
+
+
+    function plotarGraficoAlbum(dados2, a1, a2, a3, a4) {
+      var dados2 = {
+              labels: ["Albuns"],
+              datasets: [
+                  {
+                      yAxisID: 'y-umidade',
+                      label: '66',
+                      borderColor: '#b3313b',
+                      backgroundColor: '#b3313b',
+                      fill: true,
+                      data: []
+                  },
+                  {
+                      yAxisID: 'y-temperatura',
+                      label: 'Melhor do que parece',
+                      borderColor: '#13476f',
+                      backgroundColor: '#13476f',
+                      fill: true,
+                      data: []
+                  },
+                  {
+                      yAxisID: 'y-temperatura',
+                      label: 'O terno',
+                      borderColor: '#e98c22',
+                      backgroundColor: '#e98c22',
+                      fill: true,
+                      data: []
+                  },
+                  {
+                      yAxisID: 'y-temperatura',
+                      label: 'atrás/alem',
+                      borderColor: '#e98c22',
+                      backgroundColor: '#e98c22',
+                      fill: true,
+                      data: []
+                  }
+                ]
+          };
+              dados2.datasets[0].data.push(a1);
+              dados2.datasets[1].data.push(a2);
+              dados2.datasets[2].data.push(a3);
+              dados2.datasets[3].data.push(a4);
+  
+  
+              var ctx = myChart2.getContext('2d');
+            window.grafico_bar = Chart.Bar(ctx, {
+            data: dados2,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados2 capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-temperatura',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 50,
+                            min: 0
+                        }
+                    }, {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-umidade',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 50,
+                            min: 0
+                        }
+                    },
+                    {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-umidade',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 50,
+                            min: 0
+                        }
+                    },
+                    {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        id: 'y-umidade',
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0
+                        }
+                    },
+                    ],
+                }
+            }
+        });
+  
+      setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
+    }
+
+    function atualizarGrafico2(dados2, a1, a2, a3, a4) {
+      console.log();
+      fetch(`/medidas/ultimas2`, { cache: 'no-store' }, {
+        }).then((response) => {
+            if (response.ok) {
+                response.json().then((resposta) => {
+
+                  const NewaParm1 = resposta.Album[0][0].qtd_album;
+                  const NewaParm2 = resposta.Album[1][0].qtd_album;
+                  const NewaParm3 = resposta.Album[2][0].qtd_album;
+                  const NewaParm4 = resposta.Album[3][0].qtd_album;
+
+
+                        dados2.datasets[0].data = [];
+                        dados2.datasets[1].data = [];
+                        dados2.datasets[2].data = [];
+                        dados2.datasets[3].data = [];
+
+                        dados2.datasets[0].data.push(NewaParm1);
+                        dados2.datasets[1].data.push(NewaParm2);
+                        dados2.datasets[2].data.push(NewaParm3);
+                        dados2.datasets[3].data.push(NewaParm4);
+                        
+
+                    window.grafico_bar.update();
+
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
+                });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
         }
       })
         .catch(function (error) {
