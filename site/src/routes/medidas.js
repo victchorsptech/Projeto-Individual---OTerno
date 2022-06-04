@@ -1,14 +1,10 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var medidaController = require("../controllers/medidaController");
+const medidaController = require("../controllers/medidaController");
 
-router.get("/ultimas/:id_user", function (req, res) {
-    medidaController.buscarUltimasMedidas(req, res);
-});
+router.get("/ultimas", medidaController.BuscarIdade);
 
-router.get("/tempo-real/:id_user", function (req, res) {
-    medidaController.buscarMedidasEmTempoReal(req, res);
-})
+
 
 module.exports = router;

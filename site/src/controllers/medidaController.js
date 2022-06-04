@@ -22,18 +22,38 @@ function buscarUltimasMedidas(req, res) {
 }
 
 
-function buscarMedidasEmTempoReal(req, res) {
+function BuscarIdade(req, res) {
 
-    var id_user = req.params.id_user;
+    let idade = [];
 
-    console.log(`Recuperando medidas em tempo real`);
-
-    medidaModel.buscarMedidasEmTempoReal(id_user).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
+    medidaModel.BuscarIdadeEntre15e25().then((response) => {
+       const tamanho = response.length;
+       if(tamanho > 0){
+            idade.push(response)
+            medidaModel.BuscarIdadeEntre25e35().then((response) => {
+                const t1 = response.length;
+                if(t1 > 0){
+                    idade.push(response);
+                    medidaModel.BuscarIdadeMaior35().then((response) => {
+                        const t2 = response.length;
+                        if(t2 > 0){
+                            idade.push(response)
+                            res.json({
+                                idade
+                            })
+                        }
+                    }).catch(function (erro) {
+                        console.log(erro);
+                        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+                        res.status(500).json(erro.sqlMessage);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+       }
     }).catch(function (erro) {
         console.log(erro);
         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
@@ -43,6 +63,6 @@ function buscarMedidasEmTempoReal(req, res) {
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    BuscarIdade
 
 }
