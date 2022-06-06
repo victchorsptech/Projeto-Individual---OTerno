@@ -25,17 +25,17 @@
     </div>
     <nav>
       <ul class="navbar_links">
-        <li><a onclick="changescreenloginsobre()">Sobre</a></li>
-        <li><a onclick="changescreenloginintegrantes()">Integrantes</a></li>
-        <li><a onclick="changescreenloginalbuns()">Albuns</a></li>
-        <li><a onclick="changescreenloginagenda()">Agenda</a></li>
+        <li><a onclick="changescreenDashGráfico()">Gráficos</a></li>
+        <li><a onclick="changescreenDashLetras()">Letras</a></li>
+        <li><a onclick="changescreenDashPorcentagem()">Porcentagem</a></li>
+        <li><a onclick="changescreenDashLista()">Lista</a></li>
       </ul>
     </nav>
     <button onclick="limparSessao()" class="BntEntrar">Sair</button>
   </div>
   <div class="backgroundHeader">
   </div>
-
+  <a name="Gráficos"></a>
   <div class="titulo_dash">
     <h1 class="h1_text_dash"> Gráficos</h1>
   </div>
@@ -61,8 +61,8 @@
     <div class="dashboard2">
 
       <h1>Gráfico Idade </h1>
-        <span>O seguinte gráfico tem como intuito demonstrar a preferência do album do usuário de acordo com a faixa
-          etaria</span>
+      <span>O seguinte gráfico tem como intuito demonstrar a preferência do album do usuário de acordo com a faixa
+        etaria</span>
 
       <div class="graficoalbum">
         <canvas id="myChart2"></canvas>
@@ -72,7 +72,7 @@
 
 
   </div>
-
+  <a name="Letras"></a>
   <div id="div_para_vetor">
     <h1 class="h1_text">Ver Letra</h1>
     <span class="texto_select_music">Selecione uma música:</span>
@@ -139,11 +139,44 @@
     </div>
   </div>
 
-  <body>
-    Informe as muicas que ja escutou: <input id="musica_escutada_input">
-    <button onclick="CadastrarMusica()">Adicionar na Lista</button>
+
+  <a name="Porcentagem"></a>
+  <div class="div_porcentagem">
+
+    <div class="modal_esquerdo">
+       <h1> Percenctual de shows assistidos</h1>
+      <span class="text11"> Qual o total de shows que tiveram no último ano? </span>  <input class= "input11" type="number" id="total_shows_input">
+      <span class="text22">Em quantos destes shows você foi? </span> <input class= "input22" type="number" id="shows_usuario_input">
+      <button class="btnporc" onclick="VerPorcentagem()">%</button>
+      <div id="resultado2">
+
+      </div>
+
+    </div>
+
+
+
+    <div class="modal_direito">
+
+      <div id="resultado2img">
+
+      </div>
+
+    </div>
+
+  </div>
+  <a name="Lista"></a>
+<div class="div_lista">
+  <div class="modal_lista">
+
+    <h1>Listinha de músicas que escutou hoje</h1>
+
+    <span class="text11"> Colocar música na lista </span> <input id="musica_escutada_input">
+    <button class="btnlista" onclick="CadastrarMusica()">Adicionar na Lista</button>
     <div id="resultado"></div>
 
+  </div>
+</div>
 
 
 
@@ -151,362 +184,378 @@
 
 </html>
 
-  
-  
-  <script>
-  
-    var proximaAtualizacao;
-  
-    window.onload = obterIdades();
-
-    window.onload = ObterAlbuns();
-  
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    var id_user = sessionStorage.ID_USUARIO;
-  
-    verificar_autenticacao();
-  
-     function alterarTitulo(id_user) {
-         var tituloAquario = document.getElementById("tituloAquario")
-         tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + id_user + "</span>"
-     } 
-  
 
 
+<script>
 
-    function obterIdades() {
-      //  alterarTitulo(id_user)
-      if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
+  function changescreenDashGráfico() {
+    window.location.href = "./dashboard.html#Gráficos"
+  }
+
+  function changescreenDashLetras() {
+    window.location.href = "./dashboard.html#Letras"
+  }
+
+  function changescreenDashPorcentagem() {
+    window.location.href = "./dashboard.html#Porcentagem"
+  }
+
+  function changescreenDashLista() {
+    window.location.href = "./dashboard.html#Lista"
+  }
+
+  var proximaAtualizacao;
+
+  window.onload = obterIdades();
+
+  window.onload = ObterAlbuns();
+
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  var id_user = sessionStorage.ID_USUARIO;
+
+  verificar_autenticacao();
+
+  function alterarTitulo(id_user) {
+    var tituloAquario = document.getElementById("tituloAquario")
+    tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + id_user + "</span>"
+  }
+
+
+
+
+  function obterIdades() {
+    //  alterarTitulo(id_user)
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimas`, { cache: 'no-store' }).then((response) => {
+      if (response.ok) {
+        response.json().then((resposta) => {
+
+          const parm1 = resposta.idade[0][0].qtd_idade;
+          const parm2 = resposta.idade[1][0].qtd_idade;
+          const parm3 = resposta.idade[2][0].qtd_idade;
+
+          plotarGraficoIdade(parm1, parm2, parm3);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
       }
-  
-      fetch(`/medidas/ultimas`, { cache: 'no-store' }).then((response) => {
-        if (response.ok) {
-          response.json().then((resposta) => {
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
 
-            const parm1 = resposta.idade[0][0].qtd_idade;
-            const parm2 = resposta.idade[1][0].qtd_idade;
-            const parm3 = resposta.idade[2][0].qtd_idade;
-
-            plotarGraficoIdade(parm1, parm2, parm3);
-          });
-        } else {
-          console.error('Nenhum dado encontrado ou erro na API');
+  function plotarGraficoIdade(parm1, parm2, parm3) {
+    var dados = {
+      labels: ["Idades"],
+      datasets: [
+        {
+          yAxisID: 'y-umidade',
+          label: 'De 15 a 24',
+          borderColor: '#b3313b',
+          backgroundColor: '#b3313b',
+          fill: true,
+          data: []
+        },
+        {
+          yAxisID: 'y-temperatura',
+          label: 'De 25 a 34 ',
+          borderColor: '#13476f',
+          backgroundColor: '#13476f',
+          fill: true,
+          data: []
+        },
+        {
+          yAxisID: 'y-temperatura',
+          label: 'De 35 em diante',
+          borderColor: '#e98c22',
+          backgroundColor: '#e98c22',
+          fill: true,
+          data: []
         }
-      })
-        .catch(function (error) {
-          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-    }
-  
-    function plotarGraficoIdade(parm1, parm2, parm3) {
-      var dados = {
-              labels: ["Idades"],
-              datasets: [
-                  {
-                      yAxisID: 'y-umidade',
-                      label: 'De 15 a 24',
-                      borderColor: '#b3313b',
-                      backgroundColor: '#b3313b',
-                      fill: true,
-                      data: []
-                  },
-                  {
-                      yAxisID: 'y-temperatura',
-                      label: 'De 25 a 34 ',
-                      borderColor: '#13476f',
-                      backgroundColor: '#13476f',
-                      fill: true,
-                      data: []
-                  },
-                  {
-                      yAxisID: 'y-temperatura',
-                      label: 'De 35 em diante',
-                      borderColor: '#e98c22',
-                      backgroundColor: '#e98c22',
-                      fill: true,
-                      data: []
-                  }
-                ]
-          };
-              dados.datasets[0].data.push(parm1);
-              dados.datasets[1].data.push(parm2);
-              dados.datasets[2].data.push(parm3);
-  
-  
-              var ctx = myChart.getContext('2d');
-            window.grafico_bar = Chart.Bar(ctx, {
-            data: dados,
-            options: {
-                responsive: true,
-                animation: { duration: 500 },
-                hoverMode: 'index',
-                stacked: false,
-                title: {
-                    display: false,
-                    text: 'Dados capturados'
-                },
-                scales: {
-                    yAxes: [{
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        id: 'y-temperatura',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 50,
-                            min: 0
-                        }
-                    }, {
-                        type: 'linear',
-                        display: false,
-                        position: 'right',
-                        id: 'y-umidade',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 50,
-                            min: 0
-                        }
-                    },
-                    {
-                        type: 'linear',
-                        display: false,
-                        position: 'right',
-                        id: 'y-umidade',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 50,
-                            min: 0
-                        }
-                    },
-                    ],
-                }
+      ]
+    };
+    dados.datasets[0].data.push(parm1);
+    dados.datasets[1].data.push(parm2);
+    dados.datasets[2].data.push(parm3);
+
+
+    var ctx = myChart.getContext('2d');
+    window.grafico_bar = Chart.Bar(ctx, {
+      data: dados,
+      options: {
+        responsive: true,
+        animation: { duration: 500 },
+        hoverMode: 'index',
+        stacked: false,
+        title: {
+          display: false,
+          text: 'Dados capturados'
+        },
+        scales: {
+          yAxes: [{
+            type: 'linear',
+            display: true,
+            position: 'left',
+            id: 'y-temperatura',
+            ticks: {
+              beginAtZero: true,
+              max: 50,
+              min: 0
             }
-        });
-  
-      setTimeout(() => atualizarGrafico(dados, parm1, parm2, parm3), 2000);
-    }
-  
-    function atualizarGrafico(dados, parm1, parm2, parm3) {
-      console.log();
-      fetch(`/medidas/ultimas`, { cache: 'no-store' }, {
-        }).then((response) => {
-            if (response.ok) {
-                response.json().then((resposta) => {
+          }, {
+            type: 'linear',
+            display: false,
+            position: 'right',
+            id: 'y-umidade',
+            ticks: {
+              beginAtZero: true,
+              max: 50,
+              min: 0
+            }
+          },
+          {
+            type: 'linear',
+            display: false,
+            position: 'right',
+            id: 'y-umidade',
+            ticks: {
+              beginAtZero: true,
+              max: 50,
+              min: 0
+            }
+          },
+          ],
+        }
+      }
+    });
 
-                  const NewParm1 = resposta.idade[0][0].qtd_idade;
-                  const NewParm2 = resposta.idade[1][0].qtd_idade;
-                  const NewParm3 = resposta.idade[2][0].qtd_idade;
+    setTimeout(() => atualizarGrafico(dados, parm1, parm2, parm3), 2000);
+  }
+
+  function atualizarGrafico(dados, parm1, parm2, parm3) {
+    console.log();
+    fetch(`/medidas/ultimas`, { cache: 'no-store' }, {
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((resposta) => {
+
+          const NewParm1 = resposta.idade[0][0].qtd_idade;
+          const NewParm2 = resposta.idade[1][0].qtd_idade;
+          const NewParm3 = resposta.idade[2][0].qtd_idade;
 
 
-                        dados.datasets[0].data = [];
-                        dados.datasets[1].data = [];
-                        dados.datasets[2].data = [];
+          dados.datasets[0].data = [];
+          dados.datasets[1].data = [];
+          dados.datasets[2].data = [];
 
-                        dados.datasets[0].data.push(NewParm1);
-                        dados.datasets[1].data.push(NewParm2);
-                        dados.datasets[2].data.push(NewParm3);
-                        
+          dados.datasets[0].data.push(NewParm1);
+          dados.datasets[1].data.push(NewParm2);
+          dados.datasets[2].data.push(NewParm3);
 
-                    window.grafico_bar.update();
 
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, parm1, parm2, parm3), 2000);
-                });
-        } else {
-          console.error('Nenhum dado encontrado ou erro na API');
-          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          window.grafico_bar.update();
+
           proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, parm1, parm2, parm3), 2000);
-        }
-      })
-        .catch(function (error) {
-          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
-  
-    }
-
-
-    /* Grafico ALBUMS */
-
-
-    function ObterAlbuns() {
-      //  alterarTitulo(id_user)
-      if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, parm1, parm2, parm3), 2000);
       }
-  
-      fetch(`/medidas/ultimas2`, { cache: 'no-store' }).then((response) => {
-        if (response.ok) {
-          response.json().then((resposta) => {
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
 
-            const a1 = resposta.Album[0][0].qtd_album;
-            const a2 = resposta.Album[1][0].qtd_album;
-            const a3 = resposta.Album[2][0].qtd_album;
-            const a4 = resposta.Album[3][0].qtd_album;
+  }
 
-            plotarGraficoAlbum(a1, a2, a3, a4);
-            console.log (a4.value)
-          });
-        } else {
-          console.error('Nenhum dado encontrado ou erro na API');
-        }
-      })
-        .catch(function (error) {
-          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+
+  /* Grafico ALBUMS */
+
+
+  function ObterAlbuns() {
+    //  alterarTitulo(id_user)
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
     }
 
+    fetch(`/medidas/ultimas2`, { cache: 'no-store' }).then((response) => {
+      if (response.ok) {
+        response.json().then((resposta) => {
+
+          const a1 = resposta.Album[0][0].qtd_album;
+          const a2 = resposta.Album[1][0].qtd_album;
+          const a3 = resposta.Album[2][0].qtd_album;
+          const a4 = resposta.Album[3][0].qtd_album;
+
+          plotarGraficoAlbum(a1, a2, a3, a4);
+          console.log(a4.value)
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
 
 
 
-    function plotarGraficoAlbum(dados2, a1, a2, a3, a4) {
-      var dados2 = {
-              labels: ["Albuns"],
-              datasets: [
-                  {
-                      yAxisID: 'y-umidade',
-                      label: '66',
-                      borderColor: '#b3313b',
-                      backgroundColor: '#b3313b',
-                      fill: true,
-                      data: []
-                  },
-                  {
-                      yAxisID: 'y-temperatura',
-                      label: 'Melhor do que parece',
-                      borderColor: '#13476f',
-                      backgroundColor: '#13476f',
-                      fill: true,
-                      data: []
-                  },
-                  {
-                      yAxisID: 'y-temperatura',
-                      label: 'O terno',
-                      borderColor: '#e98c22',
-                      backgroundColor: '#e98c22',
-                      fill: true,
-                      data: []
-                  },
-                  {
-                      yAxisID: 'y-temperatura',
-                      label: 'atrás/alem',
-                      borderColor: '#e98c22',
-                      backgroundColor: '#e98c22',
-                      fill: true,
-                      data: []
-                  }
-                ]
-          };
-              dados2.datasets[0].data.push(a1);
-              dados2.datasets[1].data.push(a2);
-              dados2.datasets[2].data.push(a3);
-              dados2.datasets[3].data.push(a4);
-  
-  
-              var ctx = myChart2.getContext('2d');
-            window.grafico_bar = Chart.Bar(ctx, {
-            data: dados2,
-            options: {
-                responsive: true,
-                animation: { duration: 500 },
-                hoverMode: 'index',
-                stacked: false,
-                title: {
-                    display: false,
-                    text: 'Dados2 capturados'
-                },
-                scales: {
-                    yAxes: [{
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        id: 'y-temperatura',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 50,
-                            min: 0
-                        }
-                    }, {
-                        type: 'linear',
-                        display: false,
-                        position: 'right',
-                        id: 'y-umidade',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 50,
-                            min: 0
-                        }
-                    },
-                    {
-                        type: 'linear',
-                        display: false,
-                        position: 'right',
-                        id: 'y-umidade',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 50,
-                            min: 0
-                        }
-                    },
-                    {
-                        type: 'linear',
-                        display: false,
-                        position: 'right',
-                        id: 'y-umidade',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 100,
-                            min: 0
-                        }
-                    },
-                    ],
-                }
+
+  function plotarGraficoAlbum(dados2, a1, a2, a3, a4) {
+    var dados2 = {
+      labels: ["Albuns"],
+      datasets: [
+        {
+          yAxisID: 'y-umidade',
+          label: '66',
+          borderColor: '#006075',
+          backgroundColor: '#006075',
+          fill: true,
+          data: []
+        },
+        {
+          yAxisID: 'y-temperatura',
+          label: 'Melhor do que parece',
+          borderColor: '#ffac01',
+          backgroundColor: '#ffac01',
+          fill: true,
+          data: []
+        },
+        {
+          yAxisID: 'y-temperatura',
+          label: 'O terno',
+          borderColor: '#973b48',
+          backgroundColor: '#973b48',
+          fill: true,
+          data: []
+        },
+        {
+          yAxisID: 'y-temperatura',
+          label: 'atrás/alem',
+          borderColor: '#009445',
+          backgroundColor: '#009445',
+          fill: true,
+          data: []
+        }
+      ]
+    };
+    dados2.datasets[0].data.push(a1);
+    dados2.datasets[1].data.push(a2);
+    dados2.datasets[2].data.push(a3);
+    dados2.datasets[3].data.push(a4);
+
+
+    var ctx = myChart2.getContext('2d');
+    window.grafico_bar = Chart.Bar(ctx, {
+      data: dados2,
+      options: {
+        responsive: true,
+        animation: { duration: 500 },
+        hoverMode: 'index',
+        stacked: false,
+        title: {
+          display: false,
+          text: 'Dados2 capturados'
+        },
+        scales: {
+          yAxes: [{
+            type: 'linear',
+            display: true,
+            position: 'left',
+            id: 'y-temperatura',
+            ticks: {
+              beginAtZero: true,
+              max: 50,
+              min: 0
             }
-        });
-  
-      setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
-    }
-
-    function atualizarGrafico2(dados2, a1, a2, a3, a4) {
-      console.log();
-      fetch(`/medidas/ultimas2`, { cache: 'no-store' }, {
-        }).then((response) => {
-            if (response.ok) {
-                response.json().then((resposta) => {
-
-                  const NewaParm1 = resposta.Album[0][0].qtd_album;
-                  const NewaParm2 = resposta.Album[1][0].qtd_album;
-                  const NewaParm3 = resposta.Album[2][0].qtd_album;
-                  const NewaParm4 = resposta.Album[3][0].qtd_album;
-
-
-                        dados2.datasets[0].data = [];
-                        dados2.datasets[1].data = [];
-                        dados2.datasets[2].data = [];
-                        dados2.datasets[3].data = [];
-
-                        dados2.datasets[0].data.push(NewaParm1);
-                        dados2.datasets[1].data.push(NewaParm2);
-                        dados2.datasets[2].data.push(NewaParm3);
-                        dados2.datasets[3].data.push(NewaParm4);
-                        
-
-                    window.grafico_bar.update();
-
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
-                });
-        } else {
-          console.error('Nenhum dado encontrado ou erro na API');
-          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
+          }, {
+            type: 'linear',
+            display: false,
+            position: 'right',
+            id: 'y-umidade',
+            ticks: {
+              beginAtZero: true,
+              max: 50,
+              min: 0
+            }
+          },
+          {
+            type: 'linear',
+            display: false,
+            position: 'right',
+            id: 'y-umidade',
+            ticks: {
+              beginAtZero: true,
+              max: 50,
+              min: 0
+            }
+          },
+          {
+            type: 'linear',
+            display: false,
+            position: 'right',
+            id: 'y-umidade',
+            ticks: {
+              beginAtZero: true,
+              max: 100,
+              min: 0
+            }
+          },
+          ],
         }
-      })
-        .catch(function (error) {
-          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      }
+    });
+
+    setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
+  }
+
+  function atualizarGrafico2(dados2, a1, a2, a3, a4) {
+    console.log();
+    fetch(`/medidas/ultimas2`, { cache: 'no-store' }, {
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((resposta) => {
+
+          const NewaParm1 = resposta.Album[0][0].qtd_album;
+          const NewaParm2 = resposta.Album[1][0].qtd_album;
+          const NewaParm3 = resposta.Album[2][0].qtd_album;
+          const NewaParm4 = resposta.Album[3][0].qtd_album;
+
+
+          dados2.datasets[0].data = [];
+          dados2.datasets[1].data = [];
+          dados2.datasets[2].data = [];
+          dados2.datasets[3].data = [];
+
+          dados2.datasets[0].data.push(NewaParm1);
+          dados2.datasets[1].data.push(NewaParm2);
+          dados2.datasets[2].data.push(NewaParm3);
+          dados2.datasets[3].data.push(NewaParm4);
+
+
+          window.grafico_bar.update();
+
+          proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
         });
-  
-    }
-  </script>
-  
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        proximaAtualizacao = setTimeout(() => atualizarGrafico2(dados2, a1, a2, a3, a4), 2000);
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
+  }
+</script>
+
 
 
 <script>
@@ -1546,18 +1595,43 @@ Goste da gente também`
 <script>
 
 
-var lista_MusicasJaEscutadas = []
-    function CadastrarMusica() {
-        var musica_escutada = musica_escutada_input.value
-        lista_MusicasJaEscutadas.push(musica_escutada)
-    
+  var lista_MusicasJaEscutadas = []
+  function CadastrarMusica() {
+    var musica_escutada = musica_escutada_input.value
+    lista_MusicasJaEscutadas.push(musica_escutada)
 
-         resultado.innerHTML = ""
-         for (var posicao = 0; posicao < lista_MusicasJaEscutadas.length; posicao++)
 
-       resultado.innerHTML += `
+    resultado.innerHTML = ""
+    for (var posicao = 0; posicao < lista_MusicasJaEscutadas.length; posicao++)
+
+      resultado.innerHTML += `
         ${posicao + 1}-${lista_MusicasJaEscutadas[posicao]}<br>`
+  }
+
+  function VerPorcentagem() {
+    var total_shows = total_shows_input.value
+    var shows_usuario = Number(shows_usuario_input.value)
+
+    var porcentagem = (shows_usuario * 100) / total_shows
+
+    if (porcentagem <= 20) {
+      resultado2.innerHTML = `Você foi somente em ${porcentagem}% dos shows, poderia ir um pouco mais`
+      resultado2img.innerHTML = `<img src="../Itens/Imagens/triste.jpg">`
+    } else if (porcentagem <= 50) {
+      resultado2.innerHTML = `Legal, você foi em ${porcentagem}% dos shows, ficamos gratos!`
+      resultado2img.innerHTML = `<img src="../Itens/Imagens/feliz.jpg">`
     }
+    else if (porcentagem < 100) {
+      resultado2.innerHTML = `UAU!!, VOCÊ FOI EM ${porcentagem}% DOS SHOWS, QUE DOIDERA!`
+      resultado2img.innerHTML = `<img src="../Itens/Imagens/maisfeliz.jpg">`
+    }
+    else if (porcentagem == 100) {
+      resultado2.innerHTML = `UAU!!, VOCÊ FOI EM TODOS SHOWS, O TERNO TE AGRADECE IMENSAMENTE, ${sessionStorage.NOME_USUARIO}.`
+      resultado2img.innerHTML = `<img src="../Itens/Imagens/muitofeliz.jpg">`
+    }
+
+
+  }
 
 
 

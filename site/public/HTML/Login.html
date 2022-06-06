@@ -45,6 +45,14 @@
 
     </div>
 
+    
+    <div id="modal" class="modalBody">
+        <div class="modalReadPlus">
+            <h2 id="campo_alerta"></h2>
+            <button class="button8" onclick="buttonBack()">Fechar</button>
+        </div>
+    </div>
+
 
 </body>
 
@@ -81,8 +89,9 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            modal.style.display = "block";
+                    campo_alerta.innerHTML = "Os campos estão em branco"
 
             return false;
         }
@@ -119,14 +128,15 @@
                     sessionStorage.ALBUM_PREDILETO_USUARIO = json.fk_album;
 
                     setTimeout(function () {
-                        window.location = "./deashboard.html";
+                        window.location = "./dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
 
             } else {
 
-                console.log("Houve um erro ao tentar realizar o login!");
+                modal.style.display = "block";
+                    campo_alerta.innerHTML = "Email ou senha inválidos"
 
                 resposta.text().then(texto => {
                     console.error(texto);
@@ -144,5 +154,15 @@
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
+
+    
+    function buttonBack() {
+
+
+
+modal.style.display = 'none'
+
+}
+
 
 </script>

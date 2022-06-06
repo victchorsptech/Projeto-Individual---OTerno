@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>O Terno | Cadastro</title>
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/stylelogin.css">
     <script src="../js/funcoes.js"></script>
@@ -160,6 +160,12 @@
                 else if (hidden3.length != hidden4.length) {
                     modal.style.display = "block";
                     campo_alerta.innerHTML = "Digite senhas iguais!";
+                } else if (input5.value == "") {
+                    modal.style.display = "block";
+                    campo_alerta.innerHTML = "Preencha o campo Idade!";
+                } else if (input6.value == "" || input6.value == "0") {
+                    modal.style.display = "block";
+                    campo_alerta.innerHTML = "Selecione um album";
                 }
 
             })
@@ -184,9 +190,8 @@
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    cardErro.style.display = "block";
-
-                    mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                    modal.style.display = "block";
+                    campo_alerta.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
                     setTimeout(() => {
                         window.location = "login.html";

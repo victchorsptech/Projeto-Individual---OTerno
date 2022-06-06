@@ -240,6 +240,10 @@ margin-left: 6%;
 margin-top: 0%; 
 }
 
+#texto_integrante h2{
+color: white;
+}
+
 .nome_integrante {
     text-align: center;
     font-size: 40px;
@@ -376,7 +380,8 @@ margin-top: 0%;
     background: black;
     border: 1px solid #e5a400c4;
     box-sizing: border-box;
-    border-radius: 40px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
     display: flex;
     flex-direction: row;
     direction: inherit;
@@ -542,7 +547,7 @@ margin-top: 0%;
     flex-direction: column;
     text-align: center;
     color: #E5E5E5;
-    border: 2px solid #E5E5E5;
+    border: 2px solid #e5a400;
     background-color: #000000;
     margin: auto;
     padding: 10px;
@@ -587,8 +592,8 @@ h2 {
 }
 
 .button8 {
-    width: 20vw;
-    height: 8vh;
+    width: 12vw;
+    height: 6vh;
     margin-bottom: 3%;
     background: #0099FF;
     border-radius: 40px;
@@ -602,6 +607,25 @@ h2 {
     text-align: center;
     color: #FFFFFF;
     cursor: pointer;
+}
+
+.button8:hover {
+    width: 13vw;
+    height: 7vh;
+    margin-bottom: 3%;
+    background: #e5a400;
+    border-radius: 40px;
+    border-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.5vw;
+    line-height: 36px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: 1s;
 }
 
 

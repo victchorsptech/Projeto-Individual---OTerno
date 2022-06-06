@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantos shows você foi esse ano: <input id="qtd_shows_input">
+    pego o valor desta input 
+    e faz um calculo junto com o total de shows que teve 
+
+    <button onclick="calculo()">Ver %</button>
+    <div id="resultado"> </div>
+
+    <script>
+
+        function calculo() {
+            var total_shows = 10
+        var shows_usuario = Number(qtd_shows_input.value)
+
+        var porcentagem = (shows_usuario * 100) / total_shows
+
+        resultado.innerHTML = `${porcentagem}`
+
+
+        }
+
+
+
+    </script>
+</body>
+</html>
